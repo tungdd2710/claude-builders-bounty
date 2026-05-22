@@ -21,4 +21,8 @@ Then edit command names only if the target project uses a package manager or ORM
 
 ## Validation
 
-The template is plain Markdown and does not require runtime dependencies. Review it for project-specific command names before use.
+Run the zero-dependency verifier:
+
+    node scripts/verify-nextjs-sqlite-template.mjs
+
+Then copy the template into a greenfield project and try the smoke prompts in templates/nextjs-sqlite-saas/smoke-prompts.md. Claude Code should apply the SQLite, migration, tenant-scoping, billing, and testing rules without asking for a different stack or generic project context.
