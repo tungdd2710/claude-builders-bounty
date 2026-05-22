@@ -34,6 +34,14 @@ You're in the right place.
 
 ---
 
+## Submission: Next.js + SQLite CLAUDE.md Template
+
+This repository includes an opinionated CLAUDE.md template for bounty #2.
+
+See TEMPLATE_NEXTJS_SQLITE.md and templates/nextjs-sqlite-saas/CLAUDE.md for project structure, naming conventions, DB migration rules, dev commands, and implementation patterns.
+
+---
+
 ## Rules
 
 - Tasks must be related to Claude Code or AI tooling
