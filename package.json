@@ -8,7 +8,8 @@
   },
   "scripts": {
     "review": "node ./bin/claude-review.mjs",
-    "smoke": "node ./bin/claude-review.mjs --pr https://github.com/cli/cli/pull/11534 --max-files 8 --no-claude"
+    "smoke": "node ./bin/claude-review.mjs --pr https://github.com/cli/cli/pull/11534 --max-files 8 --no-claude",
+    "test": "node --check ./bin/claude-review.mjs && node ./scripts/verify-samples.mjs"
   },
   "engines": {
     "node": ">=20"
