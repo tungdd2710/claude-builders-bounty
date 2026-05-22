@@ -6,7 +6,10 @@ This submission adds a Claude Code slash command and a Bash script for bounty #1
 
 Copy the command into a Claude-enabled repository and keep changelog.sh at the repository root:
 
-    mkdir -p .claude/commands && cp .claude/commands/generate-changelog.md .claude/commands/generate-changelog.md
+    mkdir -p .claude/commands
+    cp path/to/generate-changelog.md .claude/commands/generate-changelog.md
+    cp path/to/changelog.sh ./changelog.sh
+    chmod +x ./changelog.sh
 
 ## Usage
 
@@ -32,3 +35,4 @@ The script writes CHANGELOG.md. Pass a custom output path as the first argument:
 ## Validation
 
     bash changelog.sh /tmp/CHANGELOG.md
+    node scripts/verify-changelog-output.mjs /tmp/CHANGELOG.md

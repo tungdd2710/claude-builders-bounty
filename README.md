@@ -40,6 +40,10 @@ This repository includes a Claude Code /generate-changelog command and a bash ch
 
 See GENERATE_CHANGELOG.md for setup, usage, behavior, and validation.
 
+Validate the included smoke output with:
+
+    node scripts/verify-changelog-output.mjs generated-changelog-smoke.md
+
 ---
 
 ## Rules
