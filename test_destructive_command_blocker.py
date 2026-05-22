@@ -37,8 +37,12 @@ def run_hook(command: str, home: Path) -> subprocess.CompletedProcess[str]:
 
 def assert_blocked(command: str, home: Path) -> None:
     result = run_hook(command, home)
-    assert result.returncode == 2, (command, result.returncode, result.stderr)
-    assert "Blocked destructive Bash command" in result.stderr
+    assert result.returncode == 0, (command, result.returncode, result.stderr)
+    response = json.loads(result.stdout)
+    output = response["hookSpecificOutput"]
+    assert output["hookEventName"] == "PreToolUse"
+    assert output["permissionDecision"] == "deny"
+    assert "Blocked destructive Bash command" in output["permissionDecisionReason"]
 
 
 def assert_allowed(command: str, home: Path) -> None:

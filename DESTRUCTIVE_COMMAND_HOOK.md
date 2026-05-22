@@ -19,7 +19,7 @@ Run these two commands from the repository root:
 
 ## Behavior
 
-The hook reads Claude Code pre-tool-use JSON from stdin, checks Bash commands, and exits with code 2 when a command should be blocked. The stderr message explains the reason so Claude can revise its action. Normal Bash commands exit 0 and are not logged.
+The hook reads Claude Code pre-tool-use JSON from stdin, checks Bash commands, and returns Claude Code's documented hookSpecificOutput JSON with permissionDecision: "deny" when a command should be blocked. The denial reason explains why the command was blocked so Claude can revise its action. Normal Bash commands exit 0 with no output and are not logged.
 
 Blocked attempts are logged as CSV with:
 

@@ -13,9 +13,6 @@ from pathlib import Path
 from typing import Any
 
 
-BLOCK_EXIT_CODE = 2
-
-
 def hook_dir() -> Path:
     return Path.home() / ".claude" / "hooks"
 
@@ -103,6 +100,16 @@ def log_blocked(command: str, project_path: str, reason: str) -> None:
         ])
 
 
+def deny_response(reason: str) -> dict[str, Any]:
+    return {
+        "hookSpecificOutput": {
+            "hookEventName": "PreToolUse",
+            "permissionDecision": "deny",
+            "permissionDecisionReason": reason,
+        }
+    }
+
+
 def main() -> int:
     payload = load_payload()
     if not is_bash_tool(payload):
@@ -118,13 +125,13 @@ def main() -> int:
 
     project_path = project_path_from_payload(payload)
     log_blocked(command, project_path, reason)
-    print(
+    message = (
         "Blocked destructive Bash command: "
         + reason
-        + ". Review the command manually before proceeding.",
-        file=sys.stderr,
+        + ". Review the command manually before proceeding."
     )
-    return BLOCK_EXIT_CODE
+    print(json.dumps(deny_response(message), indent=2))
+    return 0
 
 
 if __name__ == "__main__":
